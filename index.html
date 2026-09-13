@@ -16,9 +16,9 @@
     <main class="app-shell">
       <header class="topbar">
         <div>
-          <p class="eyebrow">Linguagens Formais · AFD interativo</p>
-          <h1>Vending Machine</h1>
-          <p class="subtitle">Insira moedas, acompanhe a função δ e veja o crédito percorrer o autômato determinístico.</p>
+          <p class="eyebrow">AUTOMATA SODA LAB · AFD INTERATIVO</p>
+          <h1>Automata Soda</h1>
+          <p class="subtitle">Uma máquina retrô de refrigerantes para acompanhar cada moeda, estado e transição do autômato.</p>
         </div>
         <div class="live-state" aria-label="Estado da simulação"><strong id="header-state">q0</strong><span>estado atual</span><span id="header-status">não aceita</span></div>
       </header>
@@ -26,8 +26,8 @@
       <section class="workspace" aria-label="Simulador da vending machine">
         <div class="machine-column">
           <section class="machine" id="machine" aria-labelledby="machine-title">
-            <div class="machine-top"><div><p class="machine-label">RETRO-VEND / SÉRIE 84</p><p class="machine-price" id="machine-title">AFD Cola · R$ 0,30</p></div><button class="button" id="reset-button" type="button">Nova compra</button></div>
-            <div class="product-window" aria-label="Vitrine com produtos disponíveis"><p class="marquee">GELADO · SELECIONE · GELADO</p><div class="product-shelf"><div class="product product--cola"><span>AFD</span><b>COLA</b><i>30¢</i></div><div class="product product--lime"><span>AFD</span><b>LIMÃO</b><i>30¢</i></div><div class="product product--orange"><span>AFD</span><b>LARANJA</b><i>30¢</i></div><div class="product product--grape"><span>AFD</span><b>UVA</b><i>30¢</i></div></div><div class="product-release" aria-hidden="true"><div class="can">AFD<br>COLA</div></div></div>
+            <div class="machine-top"><div><p class="machine-label">AUTOMATA SODA / SÉRIE 84</p><p class="machine-price" id="machine-title">Fagulha Fizz · R$ 0,30</p></div><button class="button" id="reset-button" type="button">Nova compra</button></div>
+            <div class="product-window" aria-label="Vitrine com refrigerantes Automata Soda"><p class="marquee">GELADO · ESCOLHA SEU FIZZ · GELADO</p><div class="product-shelf"><div class="product product--fagulha"><span>ASL</span><b>FAGULHA</b><em>FIZZ</em><i>30¢</i></div><div class="product product--nebula"><span>ASL</span><b>NÉBULA</b><em>NOX</em><i>30¢</i></div><div class="product product--solaris"><span>ASL</span><b>SOLARIS</b><em>SPLASH</em><i>30¢</i></div><div class="product product--violeta"><span>ASL</span><b>VIOLETA</b><em>VOLT</em><i>30¢</i></div></div><div class="product-release" aria-hidden="true"><div class="can">FAGULHA<br>FIZZ</div></div></div>
             <div class="credit-grid"><div><span>crédito</span><strong id="credit">R$ 0,00</strong></div><div><span id="balance-label">faltam</span><strong id="balance">R$ 0,30</strong></div></div>
             <div class="coin-bank" aria-label="Inserir moeda">
               <button class="coin" type="button" data-coin="5" aria-label="Inserir moeda de 5 centavos">5¢</button>
@@ -51,7 +51,7 @@
 
       <section class="academic-panel" id="academic-panel" hidden aria-labelledby="academic-title"><div class="panel-heading"><div><p class="section-kicker">Leitura formal</p><h2 id="academic-title">Modo Acadêmico</h2></div></div><p class="formal-line">M = (Q, Σ, δ, q0, F)</p><div class="academic-grid"><dl class="formal-details" id="formal-details"></dl><div class="table-wrap"><table class="transition-table"><thead><tr><th>Estado</th><th>+5¢</th><th>+10¢</th><th>+25¢</th></tr></thead><tbody id="transition-table-body"></tbody></table></div></div></section>
       <button class="button" id="academic-toggle" type="button" aria-expanded="false" aria-controls="academic-panel">Abrir Modo Acadêmico</button>
-      <p class="footer-note">AFD para produto de R$ 0,30 · estados finais: q30, q35, q40, q45, q50 · autores: Lucas Costa e Silva e Benvindo.</p>
+      <p class="footer-note">Automata Soda Lab · AFD para produto de R$ 0,30 · estados finais: q30, q35, q40, q45, q50 · autores: Lucas Costa e Silva e Benvindo.</p>
     </main>
     <script type="module" src="src/app.js"></script>
   </body>

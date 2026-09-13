@@ -9,7 +9,7 @@
 .button--primary:hover:not(:disabled) { background: #9af1ce; }
 .button--amber { border-color: var(--amber); color: var(--amber); }
 .button--active { background: var(--paper); color: var(--ink); }
-.example { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; color: var(--paper); background: #081e28; font-size: .72rem; }
+.example { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; color: var(--paper); background: var(--cocoa-deep); font-size: .72rem; }
 .example:hover { border-color: var(--mint); color: var(--mint); }
 .status-message { min-height: 22px; margin: 14px 0 0; color: var(--mint); font-size: .82rem; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -21,17 +21,17 @@
 .history-list b { color: var(--amber); font: .72rem var(--mono); }
 .empty-history { margin: 0; color: var(--muted); font-size: .8rem; }
 .automaton-graph { display: block; min-width: 760px; width: 100%; height: auto; }
-.automaton-graph .edge path { stroke: #72979a; stroke-width: 2; fill: none; marker-end: var(--arrow); transition: stroke .25s, stroke-width .25s; }
-.automaton-graph marker path { fill: #72979a; }
-.automaton-graph .edge text { fill: #afc8c7; font: 600 14px var(--mono); text-anchor: middle; }
+.automaton-graph .edge path { stroke: color-mix(in srgb, var(--paper) 62%, var(--amber)); stroke-width: 2; fill: none; marker-end: var(--arrow); transition: stroke .25s, stroke-width .25s; }
+.automaton-graph marker path { fill: var(--paper); }
+.automaton-graph .edge text { fill: var(--paper); font: 600 14px var(--mono); text-anchor: middle; }
 .automaton-graph .edge.is-active path { stroke: var(--amber); stroke-width: 5; filter: drop-shadow(0 0 6px var(--amber)); animation: edgePulse .75s ease-out; }
 .automaton-graph .edge.is-active text { fill: var(--amber); }
-.automaton-graph .state circle { fill: #0e3340; stroke: #86aaac; stroke-width: 2; transition: fill .25s, stroke .25s; }
+.automaton-graph .state circle { fill: var(--cocoa); stroke: var(--mint); stroke-width: 2; transition: fill .25s, stroke .25s; }
 .automaton-graph .state.is-final circle:first-child { stroke: var(--coral); }
 .automaton-graph .state text { fill: var(--paper); text-anchor: middle; font: 700 13px var(--mono); }
 .automaton-graph .state.is-current circle { fill: var(--mint); stroke: #d8fff1; stroke-width: 4; filter: drop-shadow(0 0 8px var(--mint)); animation: stateBloom .5s ease-out; }
 .automaton-graph .state.is-current text { fill: var(--ink); }
-.automaton-graph .graph-start { fill: #72979a; font: 12px var(--mono); }
-.automaton-graph .start-arrow { stroke: #72979a; stroke-width: 2; }
+.automaton-graph .graph-start { fill: var(--paper); font: 12px var(--mono); }
+.automaton-graph .start-arrow { stroke: var(--paper); stroke-width: 2; }
 @keyframes edgePulse { 0% { stroke-dasharray: 6 8; } 100% { stroke-dasharray: 1 0; } }
 @keyframes stateBloom { 0% { transform: scale(.8); transform-origin: center; } 100% { transform: scale(1); transform-origin: center; } }

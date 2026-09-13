@@ -7,6 +7,5 @@ export function renderHistory(snapshot) {
 
 export function resultText(snapshot) {
   if (!snapshot.accepted) return `Crédito atual: ${money(snapshot.credit)}. Faltam ${money(Math.max(0, 30 - snapshot.credit))}.`;
-  return `Aceita — produto liberado. Troco: ${money(snapshot.change)}.`;
+  return `Aceita — Fagulha Fizz liberada. Troco: ${money(snapshot.change)}.`;
 }
-

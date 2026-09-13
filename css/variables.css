@@ -7,6 +7,9 @@
   --mint: #77d7a8;
   --amber: #f7b733;
   --coral: #e85d3f;
+  --grape: #b879d5;
+  --cocoa: #2b1710;
+  --cocoa-deep: #190d09;
   --line: color-mix(in srgb, var(--paper) 22%, transparent);
   --shadow: 0 18px 45px rgb(0 0 0 / .28);
   --radius: 16px;

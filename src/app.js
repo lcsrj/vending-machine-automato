@@ -36,7 +36,7 @@ function update(snapshot = machine.snapshot(), message = resultText(snapshot), e
   renderAcademic(snapshot);
 }
 function insert(coin, announce = true) {
-  try { const snapshot = machine.insert(coin); update(snapshot, snapshot.accepted ? `PRODUTO LIBERADO · Inserido: ${money(snapshot.credit)} · Troco: ${money(snapshot.change)}` : announce ? `${deltaFor(snapshot)} · crédito atualizado.` : resultText(snapshot)); return snapshot; }
+  try { const snapshot = machine.insert(coin); update(snapshot, snapshot.accepted ? `FAGULHA FIZZ LIBERADA · Inserido: ${money(snapshot.credit)} · Troco: ${money(snapshot.change)}` : announce ? `${deltaFor(snapshot)} · crédito atualizado.` : resultText(snapshot)); return snapshot; }
   catch (error) { update(machine.snapshot(), error.message, true); return null; }
 }
 function renderAcademic(snapshot) {

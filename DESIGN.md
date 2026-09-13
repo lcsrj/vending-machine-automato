@@ -19,7 +19,7 @@ Tipografia: `Bungee` para os letreiros retrô, `Space Grotesk` para interface e 
 
 ## Assinatura
 
-A vitrine de quatro produtos é a assinatura: fica acesa dentro da máquina e o produto AFD Cola é liberado ao aceitar. O grafo ocupa a lateral inteira como instrumento técnico independente da vitrine.
+A vitrine de quatro refrigerantes fictícios é a assinatura: Fagulha Fizz, Nébula Nox, Solaris Splash e Violeta Volt. Fagulha Fizz é liberada ao aceitar. Todos os textos, arestas, estados e superfícies usam a mesma paleta de espresso, cereja, creme, âmbar, menta e uva.
 
 ## Acessibilidade
 
