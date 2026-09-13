@@ -81,6 +81,6 @@ docs/                         formalização, JFLAP e capturas
 
 O workflow em [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa testes e valida o JFLAP em pushes e pull requests. [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica a raiz estática no GitHub Pages após push em `master`.
 
-## Autor
+## Autores
 
-Marco — projeto de Linguagens Formais e Autômatos.
+Lucas Costa e Silva e Benvindo — projeto de Linguagens Formais e Autômatos.

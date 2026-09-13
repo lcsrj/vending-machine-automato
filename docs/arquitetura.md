@@ -14,3 +14,6 @@ automaton-definition.js
 
 O gerador JFLAP lê apenas `automaton-definition.js`, atribui IDs e coordenadas de apresentação e escreve XML no formato de autômato finito do JFLAP. `validate-jflap.mjs` volta a ler o XML e confere estados, inicial, finais e todas as transições contra a fonte central.
 
+## Autores
+
+Lucas Costa e Silva e Benvindo.

@@ -4,8 +4,8 @@ import { automaton } from '../src/automaton-definition.js';
 
 const output = resolve('docs/jflap/vending-machine.jff');
 const coordinates = {
-  q0:[50,250], q5:[105,165], q10:[160,250], q15:[215,165], q20:[270,250], q25:[325,165],
-  q30:[380,250], q35:[440,145], q40:[440,270], q45:[500,250], q50:[500,145]
+  q0:[55,230], q5:[150,80], q10:[150,185], q15:[245,80], q20:[245,185], q25:[340,275],
+  q30:[435,55], q35:[435,135], q40:[435,235], q45:[535,205], q50:[535,285]
 };
 const escapeXml = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&apos;' })[c]);
 

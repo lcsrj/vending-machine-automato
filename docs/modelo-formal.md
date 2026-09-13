@@ -24,7 +24,7 @@ A máquina aceita moedas de 5¢, 10¢ e 25¢ e libera um produto que custa 30¢.
 | q20 | q25 | q30 | q45 |
 | q25 | q30 | q35 | q50 |
 
-Não há transições a partir dos estados finais porque a compra se encerra quando o produto é liberado. O troco é `valor(q) − 30` para `q ∈ F`.
+Não há transições a partir dos estados finais porque a compra se encerra quando o produto é liberado e a interface bloqueia novas moedas. Esta é uma decisão operacional deliberada do simulador: não foram adicionados loops artificiais em `F`. Se a disciplina exigir uma função total `δ: Q × Σ → Q`, a variante acadêmica pode acrescentar loops `5,10,25` em cada estado final; ela não é usada aqui porque mudaria o significado de encerramento da venda.
 
 ## Exemplos
 
@@ -35,4 +35,3 @@ Não há transições a partir dos estados finais porque a compra se encerra qua
 ## Fonte de verdade e consistência
 
 [`src/automaton-definition.js`](../src/automaton-definition.js) é a única definição do modelo. O motor, o grafo, a tabela do modo acadêmico, os testes e [`scripts/generate-jflap.mjs`](../scripts/generate-jflap.mjs) a importam diretamente. Portanto, o arquivo [`vending-machine.jff`](jflap/vending-machine.jff) não possui tabela de transições escrita manualmente.
-

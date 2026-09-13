@@ -8,6 +8,13 @@ test('a definição tem os estados e finais exigidos', () => {
   assert.deepEqual(automaton.finalStates, ['q30', 'q35', 'q40', 'q45', 'q50']);
   assert.deepEqual(automaton.alphabet, [5, 10, 25]);
 });
+test('a tabela de transições é exatamente a especificação da atividade', () => {
+  assert.deepEqual(automaton.transitions, {
+    q0: { 5: 'q5', 10: 'q10', 25: 'q25' }, q5: { 5: 'q10', 10: 'q15', 25: 'q30' },
+    q10: { 5: 'q15', 10: 'q20', 25: 'q35' }, q15: { 5: 'q20', 10: 'q25', 25: 'q40' },
+    q20: { 5: 'q25', 10: 'q30', 25: 'q45' }, q25: { 5: 'q30', 10: 'q35', 25: 'q50' }
+  });
+});
 test('todas as transições oficiais são determinísticas e corretas', () => {
   assert.equal(transition('q0', 5), 'q5'); assert.equal(transition('q0', 10), 'q10'); assert.equal(transition('q0', 25), 'q25');
   assert.equal(transition('q5', 25), 'q30'); assert.equal(transition('q10', 25), 'q35');
@@ -40,4 +47,3 @@ test('reset restaura a configuração inicial', () => {
   const machine = createMachine(); machine.insert(25); machine.insert(10); const snapshot = machine.reset();
   assert.equal(snapshot.state, 'q0'); assert.equal(snapshot.credit, 0); assert.equal(snapshot.history.length, 0); assert.equal(snapshot.accepted, false);
 });
-

@@ -1,6 +1,7 @@
 {
   "name": "vending-machine-automato",
   "version": "1.0.0",
+  "author": "Lucas Costa e Silva e Benvindo",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,4 +11,3 @@
     "start": "node scripts/static-server.mjs"
   }
 }
-
