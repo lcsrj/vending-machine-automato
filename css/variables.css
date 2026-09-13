@@ -1,0 +1,27 @@
+:root {
+  --ink: #081923;
+  --ink-soft: #102b3a;
+  --panel: #14384a;
+  --paper: #eaf3ee;
+  --muted: #a5bec2;
+  --mint: #66e0b4;
+  --amber: #ffc857;
+  --coral: #ff7a6b;
+  --line: color-mix(in srgb, var(--paper) 22%, transparent);
+  --shadow: 0 18px 45px rgb(0 0 0 / .28);
+  --radius: 16px;
+  --display: "Space Grotesk", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", "Cascadia Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--ink); color: var(--paper); font-family: var(--display); scrollbar-color: var(--mint) var(--ink); scrollbar-width: thin; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: var(--ink); }
+*::-webkit-scrollbar-thumb { background: var(--mint); border: 2px solid var(--ink); border-radius: 10px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+body { margin: 0; min-width: 320px; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Simulador visual de AFD para uma vending machine de 30 centavos." />
+    <title>Vending Machine — AFD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Linguagens Formais · AFD interativo</p>
+          <h1>Vending Machine</h1>
+          <p class="subtitle">Insira moedas, acompanhe a função δ e veja o crédito percorrer o autômato determinístico.</p>
+        </div>
+        <div class="live-state" aria-label="Estado da simulação"><strong id="header-state">q0</strong><span>estado atual</span><span id="header-status">não aceita</span></div>
+      </header>
+
+      <section class="workspace" aria-label="Simulador da vending machine">
+        <div class="machine-column">
+          <section class="machine" id="machine" aria-labelledby="machine-title">
+            <div class="machine-top"><div><p class="machine-label">VEND-30 / MÓDULO 01</p><p class="machine-price" id="machine-title">Produto · R$ 0,30</p></div><button class="button" id="reset-button" type="button">Nova compra</button></div>
+            <div class="product-window" aria-label="Compartimento do produto"><div class="can" aria-hidden="true">AFD<br>COLA</div></div>
+            <div class="credit-grid"><div><span>crédito</span><strong id="credit">R$ 0,00</strong></div><div><span id="balance-label">faltam</span><strong id="balance">R$ 0,30</strong></div></div>
+            <div class="coin-bank" aria-label="Inserir moeda">
+              <button class="coin" type="button" data-coin="5" aria-label="Inserir moeda de 5 centavos">5¢</button>
+              <button class="coin" type="button" data-coin="10" aria-label="Inserir moeda de 10 centavos">10¢</button>
+              <button class="coin" type="button" data-coin="25" aria-label="Inserir moeda de 25 centavos">25¢</button>
+            </div>
+            <p class="status-message" id="status-message" role="status" aria-live="polite">Aguardando primeira moeda.</p>
+          </section>
+          <section class="history-panel" aria-labelledby="history-title"><h2 id="history-title">Histórico de transições</h2><div id="history-output"></div><button class="button" id="undo-button" type="button">Desfazer última moeda</button></section>
+        </div>
+
+        <div class="graph-column">
+          <section class="graph-panel" aria-labelledby="graph-title"><div class="panel-heading"><div><p class="section-kicker">Fonte única · δ</p><h2 id="graph-title">Grafo do autômato</h2></div><output class="delta-readout" id="delta-readout">δ(q0, —) = q0</output></div><div class="graph-frame" id="graph-output"></div></section>
+        </div>
+      </section>
+
+      <section class="sequence-grid" aria-label="Executar sequências">
+        <section class="sequence-panel" aria-labelledby="sequence-title"><p class="section-kicker">Entrada de palavra</p><h2 id="sequence-title">Testar sequência</h2><form class="sequence-form" id="sequence-form" novalidate><label class="sr-only" for="sequence-input">Sequência de moedas</label><input id="sequence-input" autocomplete="off" inputmode="numeric" placeholder="Ex.: 5, 10, 5, 10" /><button class="button button--primary" type="submit">Executar</button><button class="button button--amber" id="step-mode-button" type="button">Passo a passo</button></form><div class="examples" aria-label="Exemplos predefinidos"><button class="example" type="button" data-sequence="10,10,10">Compra exata</button><button class="example" type="button" data-sequence="25,10">Com troco</button><button class="example" type="button" data-sequence="5,5,5,5,5,5">Muitas moedas</button><button class="example" type="button" data-sequence="10,10">Crédito insuficiente</button></div></section>
+        <section class="sequence-panel" aria-labelledby="step-title"><p class="section-kicker">Execução guiada</p><h2 id="step-title">Próxima transição</h2><p class="step-status" id="step-status" role="status">Carregue uma sequência para iniciar a execução guiada.</p><div class="step-controls"><button class="button" id="previous-step" type="button" disabled>Anterior</button><button class="button button--primary" id="next-step" type="button" disabled>Próxima</button></div></section>
+      </section>
+
+      <section class="academic-panel" id="academic-panel" hidden aria-labelledby="academic-title"><div class="panel-heading"><div><p class="section-kicker">Leitura formal</p><h2 id="academic-title">Modo Acadêmico</h2></div></div><p class="formal-line">M = (Q, Σ, δ, q0, F)</p><div class="academic-grid"><dl class="formal-details" id="formal-details"></dl><div class="table-wrap"><table class="transition-table"><thead><tr><th>Estado</th><th>+5¢</th><th>+10¢</th><th>+25¢</th></tr></thead><tbody id="transition-table-body"></tbody></table></div></div></section>
+      <button class="button" id="academic-toggle" type="button" aria-expanded="false" aria-controls="academic-panel">Abrir Modo Acadêmico</button>
+      <p class="footer-note">AFD para produto de R$ 0,30 · estados finais: q30, q35, q40, q45, q50.</p>
+    </main>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
+
