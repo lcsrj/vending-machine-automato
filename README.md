@@ -31,6 +31,7 @@ Mais detalhes: [modelo formal](docs/modelo-formal.md) e [arquitetura](docs/arqui
 ## Funcionalidades
 
 - Inserção de moedas com função δ e animação no grafo SVG.
+- Vitrine artística com garrafas selecionáveis: Fagulha Fizz (30¢), Nébula Nox (35¢), Solaris Splash (40¢) e Violeta Volt (45¢). A seleção atualiza objetivo, rota sugerida, liberação e troco.
 - Histórico, troco, bloqueio ao aceitar, desfazer e nova compra.
 - Execução integral ou passo a passo de sequências.
 - Exemplos: compra exata, compra com troco, muitas moedas e crédito insuficiente.
@@ -70,6 +71,7 @@ Abra `http://localhost:4173`. Os testes cobrem transições, entradas inválidas
 ```text
 src/automaton-definition.js  definição central
 src/automaton-engine.js      regras de execução
+src/products.js              catálogo visual e preços das garrafas
 src/graph.js                 grafo SVG
 src/app.js                   integração web
 scripts/generate-jflap.mjs   geração do .jff

@@ -19,7 +19,7 @@ Tipografia: `Bungee` para os letreiros retrô, `Space Grotesk` para interface e 
 
 ## Assinatura
 
-A vitrine de quatro refrigerantes fictícios é a assinatura: Fagulha Fizz, Nébula Nox, Solaris Splash e Violeta Volt. Fagulha Fizz é liberada ao aceitar. Todos os textos, arestas, estados e superfícies usam a mesma paleta de espresso, cereja, creme, âmbar, menta e uva.
+A vitrine de quatro garrafas fictícias é a assinatura: Fagulha Fizz (30¢), Nébula Nox (35¢), Solaris Splash (40¢) e Violeta Volt (45¢). Cada garrafa é reconhecível pela silhueta, rótulo, tampa e líquido da paleta; ela é um botão de seleção, não um cartão decorativo. Ao alcançar a rota de crédito indicada, a garrafa selecionada cai na área de retirada. O verde fica reservado a aceitação e estado atual; rótulos e textos de apoio usam creme ou âmbar. Todos os textos, arestas, estados e superfícies usam a mesma paleta de espresso, cereja, creme, âmbar, menta e uva.
 
 ## Acessibilidade
 

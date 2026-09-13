@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { automaton } from '../src/automaton-definition.js';
 import { AutomatonError, changeFor, createMachine, isFinal, parseSequence, simulate, transition } from '../src/automaton-engine.js';
+import { canRelease, productById, productChange, products } from '../src/products.js';
 
 test('a definição tem os estados e finais exigidos', () => {
   assert.equal(automaton.initialState, 'q0');
@@ -46,4 +47,22 @@ test('undo restaura estado, crédito e histórico', () => {
 test('reset restaura a configuração inicial', () => {
   const machine = createMachine(); machine.insert(25); machine.insert(10); const snapshot = machine.reset();
   assert.equal(snapshot.state, 'q0'); assert.equal(snapshot.credit, 0); assert.equal(snapshot.history.length, 0); assert.equal(snapshot.accepted, false);
+});
+test('catálogo mantém preços e rotas alcançáveis pelo AFD', () => {
+  assert.deepEqual(products.map(({ name, price }) => [name, price]), [
+    ['Fagulha Fizz', 30], ['Nébula Nox', 35], ['Solaris Splash', 40], ['Violeta Volt', 45]
+  ]);
+  for (const product of products) {
+    const snapshot = simulate(product.route);
+    assert.equal(snapshot.credit, product.price);
+    assert.equal(canRelease(product, snapshot), true);
+    assert.equal(productChange(product, snapshot.credit), 0);
+  }
+});
+test('produto selecionado calcula troco pelo preço da garrafa', () => {
+  const nebula = productById('nebula');
+  const snapshot = simulate([10, 10, 25]);
+  assert.equal(snapshot.state, 'q45');
+  assert.equal(canRelease(nebula, snapshot), true);
+  assert.equal(productChange(nebula, snapshot.credit), 10);
 });

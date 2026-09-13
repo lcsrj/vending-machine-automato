@@ -1,27 +1,38 @@
 import { automaton, money } from './automaton-definition.js';
 import { AutomatonError, createMachine, parseSequence } from './automaton-engine.js';
 import { graphMarkup } from './graph.js';
-import { renderHistory, resultText } from './history.js';
+import { renderHistory } from './history.js';
+import { canRelease, productById, productChange } from './products.js';
 
 const machine = createMachine();
 const $ = (selector) => document.querySelector(selector);
 const ui = {
-  machine: $('#machine'), credit: $('#credit'), balance: $('#balance'), balanceLabel: $('#balance-label'), headerState: $('#header-state'), headerStatus: $('#header-status'),
+  machine: $('#machine'), machineTitle: $('#machine-title'), credit: $('#credit'), balance: $('#balance'), balanceLabel: $('#balance-label'), headerState: $('#header-state'), headerStatus: $('#header-status'),
   status: $('#status-message'), delta: $('#delta-readout'), graph: $('#graph-output'), history: $('#history-output'), undo: $('#undo-button'), reset: $('#reset-button'),
   coins: [...document.querySelectorAll('[data-coin]')], form: $('#sequence-form'), input: $('#sequence-input'), stepMode: $('#step-mode-button'), previous: $('#previous-step'), next: $('#next-step'), stepStatus: $('#step-status'),
-  academic: $('#academic-panel'), academicToggle: $('#academic-toggle'), details: $('#formal-details'), table: $('#transition-table-body')
+  academic: $('#academic-panel'), academicToggle: $('#academic-toggle'), details: $('#formal-details'), table: $('#transition-table-body'),
+  products: [...document.querySelectorAll('[data-product]')], releaseBottle: $('#release-bottle'), releaseName: $('#release-name')
 };
 let stepSequence = [];
 let stepIndex = 0;
+let selectedProduct = productById('fagulha');
 
 function deltaFor(snapshot) {
   const t = snapshot.lastTransition;
   return t ? `δ(${t.from}, ${t.input}) = ${t.to}` : `δ(${snapshot.state}, —) = ${snapshot.state}`;
 }
-function update(snapshot = machine.snapshot(), message = resultText(snapshot), error = false) {
+function selectedMessage(snapshot) {
+  if (!snapshot.accepted) return `Crédito atual: ${money(snapshot.credit)}. Faltam ${money(Math.max(0, selectedProduct.price - snapshot.credit))} para ${selectedProduct.name}.`;
+  if (!canRelease(selectedProduct, snapshot)) return `${selectedProduct.name} custa ${money(selectedProduct.price)}. O AFD parou em ${snapshot.state}; inicie uma nova compra e use a rota sugerida.`;
+  return `${selectedProduct.name} liberada · Inserido: ${money(snapshot.credit)} · Troco: ${money(productChange(selectedProduct, snapshot.credit))}.`;
+}
+function routeText(product) { return product.route.map((coin) => `${coin}¢`).join(' + '); }
+function update(snapshot = machine.snapshot(), message = selectedMessage(snapshot), error = false) {
+  const released = canRelease(selectedProduct, snapshot);
   ui.credit.textContent = money(snapshot.credit);
-  ui.balanceLabel.textContent = snapshot.accepted ? 'troco' : 'faltam';
-  ui.balance.textContent = money(snapshot.accepted ? snapshot.change : Math.max(0, automaton.productPrice - snapshot.credit));
+  ui.balanceLabel.textContent = released ? 'troco' : 'faltam';
+  ui.balance.textContent = money(released ? productChange(selectedProduct, snapshot.credit) : Math.max(0, selectedProduct.price - snapshot.credit));
+  ui.machineTitle.textContent = `${selectedProduct.name} · ${money(selectedProduct.price)}`;
   ui.headerState.textContent = snapshot.state;
   ui.headerStatus.textContent = snapshot.accepted ? 'aceita' : 'não aceita';
   ui.headerStatus.style.color = snapshot.accepted ? 'var(--mint)' : 'var(--muted)';
@@ -30,13 +41,21 @@ function update(snapshot = machine.snapshot(), message = resultText(snapshot), e
   ui.history.innerHTML = renderHistory(snapshot);
   ui.undo.disabled = !snapshot.history.length;
   ui.coins.forEach((button) => { button.disabled = snapshot.accepted; });
-  ui.machine.classList.toggle('is-vended', snapshot.accepted);
+  ui.machine.classList.toggle('is-vended', released);
+  ui.products.forEach((button) => {
+    const chosen = button.dataset.product === selectedProduct.id;
+    button.classList.toggle('is-selected', chosen);
+    button.setAttribute('aria-pressed', String(chosen));
+  });
+  ui.releaseBottle.className = `release-bottle ${selectedProduct.className}`;
+  ui.releaseName.innerHTML = selectedProduct.name.toUpperCase().replace(' ', '<br>');
   ui.status.textContent = message;
   ui.status.classList.toggle('is-error', error);
+  ui.status.classList.toggle('is-success', snapshot.accepted && !error);
   renderAcademic(snapshot);
 }
 function insert(coin, announce = true) {
-  try { const snapshot = machine.insert(coin); update(snapshot, snapshot.accepted ? `FAGULHA FIZZ LIBERADA · Inserido: ${money(snapshot.credit)} · Troco: ${money(snapshot.change)}` : announce ? `${deltaFor(snapshot)} · crédito atualizado.` : resultText(snapshot)); return snapshot; }
+  try { const snapshot = machine.insert(coin); update(snapshot, snapshot.accepted ? selectedMessage(snapshot) : announce ? `${deltaFor(snapshot)} · crédito atualizado.` : selectedMessage(snapshot)); return snapshot; }
   catch (error) { update(machine.snapshot(), error.message, true); return null; }
 }
 function renderAcademic(snapshot) {
@@ -44,6 +63,16 @@ function renderAcademic(snapshot) {
   ui.table.innerHTML = Object.entries(automaton.transitions).map(([state, row]) => `<tr class="${state === snapshot.state ? 'current-row' : ''}"><td>${state}</td>${automaton.alphabet.map((coin) => `<td>${row[coin]}</td>`).join('')}</tr>`).join('');
 }
 function reset(message = 'Nova compra iniciada. Estado restaurado para q0.') { machine.reset(); stepSequence = []; stepIndex = 0; update(machine.snapshot(), message); updateStepControls(); }
+function selectProduct(id) {
+  selectedProduct = productById(id);
+  const snapshot = machine.snapshot();
+  const message = canRelease(selectedProduct, snapshot)
+    ? `${selectedProduct.name} liberada · Troco: ${money(productChange(selectedProduct, snapshot.credit))}.`
+    : snapshot.accepted
+      ? `${selectedProduct.name} custa ${money(selectedProduct.price)}. O crédito final é ${money(snapshot.credit)}; use Nova compra e a rota ${routeText(selectedProduct)}.`
+      : `${selectedProduct.name} selecionada · ${money(selectedProduct.price)} · rota sugerida: ${routeText(selectedProduct)}.`;
+  update(snapshot, message);
+}
 function updateStepControls() {
   const hasSequence = stepSequence.length > 0;
   ui.previous.disabled = !hasSequence || stepIndex === 0;
@@ -57,6 +86,7 @@ function goNext() { if (stepIndex >= stepSequence.length) return; const snapshot
 function goPrevious() { if (stepIndex <= 0) return; stepIndex -= 1; machine.reset(); for (const coin of stepSequence.slice(0, stepIndex)) machine.insert(coin); update(machine.snapshot(), `Passo ${stepIndex}/${stepSequence.length} restaurado.`); updateStepControls(); }
 
 ui.coins.forEach((button) => button.addEventListener('click', () => insert(Number(button.dataset.coin))));
+ui.products.forEach((button) => button.addEventListener('click', () => selectProduct(button.dataset.product)));
 ui.undo.addEventListener('click', () => update(machine.undo(), 'Última moeda removida.'));
 ui.reset.addEventListener('click', () => reset());
 ui.form.addEventListener('submit', (event) => { event.preventDefault(); try { const sequence = parseSequence(ui.input.value); if (!sequence.length) throw new AutomatonError('Informe ao menos uma moeda.'); reset('Executando sequência completa.'); for (const coin of sequence) { if (machine.snapshot().accepted) throw new AutomatonError('A sequência adiciona moeda depois da aceitação.'); machine.insert(coin); } update(machine.snapshot(), `Sequência ${machine.snapshot().accepted ? 'ACEITA' : 'REJEITADA'} · estado ${machine.snapshot().state}.`); } catch (error) { update(machine.snapshot(), error.message, true); } });

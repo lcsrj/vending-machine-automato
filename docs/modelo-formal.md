@@ -26,6 +26,10 @@ A máquina aceita moedas de 5¢, 10¢ e 25¢ e libera um produto que custa 30¢.
 
 Não há transições a partir dos estados finais porque a compra se encerra quando o produto é liberado e a interface bloqueia novas moedas. Esta é uma decisão operacional deliberada do simulador: não foram adicionados loops artificiais em `F`. Se a disciplina exigir uma função total `δ: Q × Σ → Q`, a variante acadêmica pode acrescentar loops `5,10,25` em cada estado final; ela não é usada aqui porque mudaria o significado de encerramento da venda.
 
+## Catálogo da interface
+
+O AFD, o modo acadêmico e o arquivo JFLAP continuam sendo o modelo-base de 30¢, exatamente como definido acima. A vitrine usa esse mesmo conjunto de estados finais como créditos alcançáveis para quatro garrafas fictícias: Fagulha Fizz (30¢), Nébula Nox (35¢), Solaris Splash (40¢) e Violeta Volt (45¢). Cada garrafa mostra uma rota que termina exatamente no seu crédito, por exemplo `10, 25 → q35` para Nébula Nox. Assim, o catálogo amplia a experiência visual sem alterar `Q`, `Σ`, `δ`, `q0` ou `F` da atividade.
+
 ## Exemplos
 
 - `5, 25`: `q0 → q5 → q30`; aceita, troco 0¢.
@@ -34,4 +38,4 @@ Não há transições a partir dos estados finais porque a compra se encerra qua
 
 ## Fonte de verdade e consistência
 
-[`src/automaton-definition.js`](../src/automaton-definition.js) é a única definição do modelo. O motor, o grafo, a tabela do modo acadêmico, os testes e [`scripts/generate-jflap.mjs`](../scripts/generate-jflap.mjs) a importam diretamente. Portanto, o arquivo [`vending-machine.jff`](jflap/vending-machine.jff) não possui tabela de transições escrita manualmente.
+[`src/automaton-definition.js`](../src/automaton-definition.js) é a única definição do modelo. O motor, o grafo, a tabela do modo acadêmico, os testes e [`scripts/generate-jflap.mjs`](../scripts/generate-jflap.mjs) a importam diretamente. O catálogo artístico em [`src/products.js`](../src/products.js) é propositalmente separado e não modifica o autômato. Portanto, o arquivo [`vending-machine.jff`](jflap/vending-machine.jff) não possui tabela de transições escrita manualmente.

@@ -10,14 +10,16 @@
 .button--amber { border-color: var(--amber); color: var(--amber); }
 .button--active { background: var(--paper); color: var(--ink); }
 .example { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; color: var(--paper); background: var(--cocoa-deep); font-size: .72rem; }
-.example:hover { border-color: var(--mint); color: var(--mint); }
-.status-message { min-height: 22px; margin: 14px 0 0; color: var(--mint); font-size: .82rem; }
+.example:hover { border-color: var(--amber); color: var(--amber); }
+.status-message { min-height: 22px; margin: 14px 0 0; color: var(--muted); font-size: .82rem; }
+.machine-note { margin: 12px 0 -2px; color: var(--muted); font: .66rem/1.35 var(--mono); }
+.status-message.is-success { color: var(--mint); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .status-message.is-error { color: var(--coral); }
 .history-list { display: grid; gap: 7px; padding: 0; margin: 0; list-style: none; }
 .history-list li { display: grid; grid-template-columns: 29px 1fr 45px 1fr; align-items: center; gap: 7px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: .8rem; }
 .history-list li span { color: var(--muted); font: .67rem var(--mono); }
-.history-list code { color: var(--mint); font: inherit var(--mono); }
+.history-list code { color: var(--paper); font: inherit var(--mono); }
 .history-list b { color: var(--amber); font: .72rem var(--mono); }
 .empty-history { margin: 0; color: var(--muted); font-size: .8rem; }
 .automaton-graph { display: block; min-width: 760px; width: 100%; height: auto; }

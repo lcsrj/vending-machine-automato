@@ -5,6 +5,7 @@ automaton-definition.js
  ├─ automaton-engine.js  → estado, transição, aceitação, troco, undo/reset
  ├─ graph.js             → SVG do AFD e destaque da transição
  ├─ history.js           → histórico legível
+ ├─ products.js          → catálogo, rotas e preços das garrafas
  ├─ app.js               → interface e execução de sequência
  ├─ tests/*.test.js      → validação automatizada
  └─ generate-jflap.mjs   → docs/jflap/vending-machine.jff
