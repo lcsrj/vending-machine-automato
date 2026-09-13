@@ -4,7 +4,7 @@ Simulador web de um AFD para uma máquina que vende um produto por **R$ 0,30** e
 
 ## Demonstração
 
-Após a publicação, a demonstração estará em `https://<usuario>.github.io/vending-machine-automato/`. A URL final será registrada aqui quando houver um repositório GitHub autenticado.
+A demonstração pública está em [lcsrj.github.io/vending-machine-automato](https://lcsrj.github.io/vending-machine-automato/).
 
 ## O modelo formal
 
