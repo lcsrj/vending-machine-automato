@@ -10,10 +10,10 @@ A demonstração pública está em [lcsrj.github.io/vending-machine-automato](ht
 
 `M = (Q, Σ, δ, q0, F)`
 
-- `Q = {q0, q5, q10, q15, q20, q25, q30, q35, q40, q45, q50}`
-- `Σ = {5, 10, 25}`
-- `q0 = q0`
-- `F = {q30, q35, q40, q45, q50}`
+\- `Q = {q0, q5, q10, q15, q20, q25, q30, q35, q40, q45, q50}`
+\- `Σ = {5, 10, 25}`
+\- `q0 = q0`
+\- `F = {q30, q35, q40, q45, q50}`
 
 Estados finais representam crédito suficiente. O troco é o crédito acumulado menos 30¢.
 
@@ -30,13 +30,13 @@ Mais detalhes: [modelo formal](docs/modelo-formal.md) e [arquitetura](docs/arqui
 
 ## Funcionalidades
 
-- Inserção de moedas com função δ e animação no grafo SVG.
-- Vitrine artística com garrafas selecionáveis: Fagulha Fizz (30¢), Nébula Nox (35¢), Solaris Splash (40¢) e Violeta Volt (45¢). A seleção atualiza objetivo, rota sugerida, liberação e troco.
-- Histórico, troco, bloqueio ao aceitar, desfazer e nova compra.
-- Execução integral ou passo a passo de sequências.
-- Exemplos: compra exata, compra com troco, muitas moedas e crédito insuficiente.
-- Modo Acadêmico com definição formal e tabela de transições ao vivo.
-- `.jff` gerado automaticamente da definição central.
+\- Inserção de moedas com função δ e animação no grafo SVG.
+\- Vitrine artística com garrafas selecionáveis: Fagulha Fizz (30¢), Nébula Nox (35¢), Solaris Splash (40¢) e Violeta Volt (45¢). A seleção atualiza objetivo, rota sugerida, liberação e troco.
+\- Histórico, troco, bloqueio ao aceitar, desfazer e nova compra.
+\- Execução integral ou passo a passo de sequências.
+\- Exemplos: compra exata, compra com troco, muitas moedas e crédito insuficiente.
+\- Modo Acadêmico com definição formal e tabela de transições ao vivo.
+\- `.jff` gerado automaticamente da definição central.
 
 ## JFLAP
 
@@ -47,7 +47,7 @@ npm run generate:jflap
 npm run check:jflap
 ```
 
-O arquivo foi aberto no JFLAP 7.1; a captura real da janela, com o título `JFLAP : (vending-machine.jff)`, está em `docs/screenshots/jflap-model.png`.
+O arquivo foi aberto e validado no JFLAP 7.1. A captura de apresentação do modelo está em `docs/screenshots/jflap-model.png`.
 
 ![Modelo JFLAP](docs/screenshots/jflap-model.png)
 

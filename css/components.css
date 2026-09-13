@@ -3,10 +3,10 @@
 .coin:active:not(:disabled) { transform: translateY(3px); box-shadow: inset -5px -5px 0 #8d5c00, 0 1px 0 #8d5c00; }
 .coin:disabled { cursor: not-allowed; filter: grayscale(.7) opacity(.55); }
 .button { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; color: var(--paper); background: transparent; font-size: .79rem; font-weight: 700; transition: background .16s, transform .16s; }
-.button:hover:not(:disabled) { background: rgb(234 243 238 / .12); }
+.button:hover:not(:disabled) { border-color: var(--amber); background: color-mix(in srgb, var(--amber) 14%, transparent); }
 .button:active:not(:disabled) { transform: translateY(1px); }
-.button--primary { border-color: var(--mint); background: var(--mint); color: var(--ink); }
-.button--primary:hover:not(:disabled) { background: #9af1ce; }
+.button--primary { border-color: var(--amber); background: var(--amber); color: var(--cocoa-deep); }
+.button--primary:hover:not(:disabled) { background: #ffd05d; }
 .button--amber { border-color: var(--amber); color: var(--amber); }
 .button--active { background: var(--paper); color: var(--ink); }
 .example { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; color: var(--paper); background: var(--cocoa-deep); font-size: .72rem; }

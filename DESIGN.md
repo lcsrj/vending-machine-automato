@@ -11,8 +11,8 @@ Uma máquina de refrigerantes de fliperama dos anos 1980: chapa pintada, cromado
 | `--ink` | `#24150e` | fundo espresso |
 | `--panel` | `#9e321c` | chapa esmaltada da máquina |
 | `--paper` | `#fff2d1` | letreiros e áreas de leitura |
-| `--mint` | `#77d7a8` | estado atual, ação segura |
-| `--amber` | `#f7b733` | moedas e transição ativa |
+| `--mint` | `#77d7a8` | estado atual e aceitação |
+| `--amber` | `#f7b733` | moedas, botões e transição ativa |
 | `--coral` | `#e85d3f` | atenção e estados finais |
 
 Tipografia: `Bungee` para os letreiros retrô, `Space Grotesk` para interface e `IBM Plex Mono` para estados e função δ. Os valores são implementados apenas em `css/variables.css`, consumidos por `layout.css` e `components.css`.
